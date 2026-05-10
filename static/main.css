@@ -1,14 +1,36 @@
+/* color ref https://colorhunt.co/palette/7f2020869b7ec9caacf6f3eb */ 
+/* color ref #2 https://colorhunt.co/palette/222831393e46948979dfd0b8 */
+:root {
+  /* Base Colors */
+  --backgound-primary: #222831;
+  --background-secondary: #393E46;
+  
+  /* Functional Colors */
+  /* --text-main: #C9CAAC; */
+  --text-primary: #DFD0B8;
+}
+
+
 body {
+    background-color: var(--backgound-primary);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    margin: 0;
+    padding: 0;
+    /* width: 100vw; */
 }
 
 footer {
-    margin-top: auto;
-    background-color: #333;
-    color: white;
-    padding: 20px;
+    /* margin-top: auto; */
+    /* background-color: var(--background-secondary); */
+    color: var(--text-primary);
+    /* padding: 20px; */
     text-align: center;
     
 }
@@ -19,8 +41,10 @@ main {
 
 /* Nav bar styling */
 .navmain{
-    background-color: #333;
+    background-color: var(--background-secondary);
     overflow: hidden;
+    /* margin: 0; */
+    padding: 0;
 }
 
 .navmain ul {
@@ -31,7 +55,7 @@ main {
 }
 
 .navmain a {
-    color: aliceblue;
+    color: var(--text-primary);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
