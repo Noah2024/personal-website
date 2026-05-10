@@ -1,0 +1,46 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+footer {
+    margin-top: auto;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    
+}
+main {
+    flex: 1
+}
+
+
+/* Nav bar styling */
+.navmain{
+    background-color: #333;
+    overflow: hidden;
+}
+
+.navmain ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navmain a {
+    color: aliceblue;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+}
+
+.navmain a:hover{
+    background-color: #ddd;
+    color: black;
+}
+/* End Nav bar styling */

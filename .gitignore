@@ -30,3 +30,6 @@ go.work.sum
 # Editor/IDE
 # .idea/
 # .vscode/
+
+#Couple of inspiration images for the style of my website
+inspiration/*
