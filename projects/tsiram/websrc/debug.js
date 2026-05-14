@@ -21,6 +21,17 @@ async function instantiate(module, imports = {}) {
   };
   const { exports } = await WebAssembly.instantiate(module, adaptedImports);
   const memory = exports.memory || imports.env.memory;
+  const adaptedExports = Object.setPrototypeOf({
+    createAndLoadSystem(name) {
+      // src/wasmIndex/createAndLoadSystem(~lib/string/String) => ~lib/string/String
+      name = __lowerString(name) || __notnull();
+      return __liftString(exports.createAndLoadSystem(name) >>> 0);
+    },
+    startSystem() {
+      // src/wasmIndex/startSystem() => ~lib/string/String
+      return __liftString(exports.startSystem() >>> 0);
+    },
+  }, exports);
   function __liftString(pointer) {
     if (!pointer) return null;
     const
@@ -32,10 +43,24 @@ async function instantiate(module, imports = {}) {
     while (end - start > 1024) string += String.fromCharCode(...memoryU16.subarray(start, start += 1024));
     return string + String.fromCharCode(...memoryU16.subarray(start, end));
   }
-  return exports;
+  function __lowerString(value) {
+    if (value == null) return 0;
+    const
+      length = value.length,
+      pointer = exports.__new(length << 1, 2) >>> 0,
+      memoryU16 = new Uint16Array(memory.buffer);
+    for (let i = 0; i < length; ++i) memoryU16[(pointer >>> 1) + i] = value.charCodeAt(i);
+    return pointer;
+  }
+  function __notnull() {
+    throw TypeError("value must not be null");
+  }
+  return adaptedExports;
 }
 export const {
   memory,
+  createAndLoadSystem,
+  startSystem,
 } = await (async url => instantiate(
   await (async () => {
     const isNodeOrBun = typeof process != "undefined" && process.versions != null && (process.versions.node != null || process.versions.bun != null);
