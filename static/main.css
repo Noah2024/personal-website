@@ -2,7 +2,6 @@
 /* color ref #2 https://colorhunt.co/palette/222831393e46948979dfd0b8 */
 
 @font-face {
-
   font-family: 'Quicksand';
   src: url('fonts/Quicksand/Quicksand-VariableFont_wght.woff2') format('woff2'),
   url(fonts/Quicksand/Quicksand-VariableFont_wght.ttf) format('truetype');
@@ -56,6 +55,18 @@ main {
     overflow: visible;
     /* margin: 0; */
     padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.navmain img {
+    margin: 0;
+    padding: 0;
+    width: clamp(20px, 65%, 300px);
+    height: clamp(20px, 65%, 300px);
+    /* width: 100px;
+    height: 100px; */
+    aspect-ratio: calc(65/78);
 }
 
 .navmain ul {
@@ -63,6 +74,11 @@ main {
     margin: 0;
     padding: 0;
     display: flex;
+}
+
+.navmain li{
+    display: flex;
+    align-items: center;
 }
 
 .navmain a {
@@ -77,11 +93,7 @@ main {
     padding-bottom: .2em;
     position: relative;
 
-    /* border-bottom: .25em solid #4a7ac1;
-    padding-bottom: 0%; 
-    border-bottom-left-radius: 100%;
-    border-bottom-right-radius: 100%; */
-    /* border-bottom  */
+    justify-self: center;
 }
 /* 
 .navmain:is(:hover, :focus-visible) > a::after{
@@ -108,11 +120,6 @@ main {
     background-color: var(--text-color-primary);
     border-radius: 999px; /* fully rounded ends */
 } 
-
-
-.navmain {
-
-}
 
 /* .navmain a:hover{
     background-color: #ddd;
