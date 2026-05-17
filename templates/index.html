@@ -6,27 +6,13 @@
     <!-- //For mobile? -->
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <link rel="stylesheet" href="/static/main.css"> 
+    <script type="module" src="./components/header/header.js"></script>
+
     <script type="module" src="/scripts/loadtsiram.js"></script>
     <title> indoshon </title>
 </head>
 
-<header>
-    <nav class = "navmain"> 
-        <ul>
-            <li> <a href="#home"> Home </a></li>
-            <li> <a href="#projects"> Projects </a> </li>
-            <li> <a href="#contact"> Contact</a> </li>
-        </ul>
-
-        <ul style="flex-direction: row-reverse ">
-            <li> <a href="#contact"> <img src="/static/images/topbar/download.svg"> </a> </li>
-            <li> <a href="https://www.linkedin.com/in/noah-yurasko-a86207336/"> <img src="/static/images/topbar/linkedin.svg"> </a></li>
-            <li> <a href="https://github.com/Noah2024"> <img src="/static/images/topbar/github.svg"> </a> </li>
-        </ul>
-    </nav>
-
-        
-</header>
+<app-header></app-header>
 
 <body>
 
@@ -34,6 +20,9 @@
         <button id="StartSystem"> Start System </button>
         <button id="StopSystem"> Stop System </button>
     </main>
+        <div style="width: 300px; height: 150px; overflow: auto; border: 1px solid #ccc; padding: 10px;">
+            <p>Add enough content here to exceed 150px in height, and a scrollbar will appear automatically.</p>
+        </div>
     <footer> 
         <p> &copy 2026 Noah Yurasko. All Rights Reserved. </p>
         <!-- <address>
