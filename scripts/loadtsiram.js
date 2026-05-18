@@ -2,6 +2,12 @@ let memory;
 let wasmInstance;
 let CPU_ACTIVE = false;
 const decoder = new TextDecoder("utf-16le");
+const outputContainer = document.getElementsByClassName("cpu-output")[0]
+
+//Checking if there exists an output contianer for tsiram to output to
+if (outputContainer == undefined){
+  console.log("Could not find location for tsiram output, defaulting to console log only")
+}
 
 //To do next
 // Add a toggle to ansci color codes on the log output of the CPU
@@ -68,7 +74,9 @@ const imports = {
       throw new Error(`WASM abort`);
     },
     "console.log": (...args) => {
-        console.log("[wasm]", readUtf16(...args));
+        let str = readUtf16(...args);
+        console.log("[tsiram]", str);
+        htmlOutputWrapper(str)
         // console.log("[wasm]", ...args);
 
     }
@@ -137,3 +145,13 @@ const btn2 = document.getElementById('StopSystem');
 btn2.onclick = function() {
   stopSystem()
 };
+
+function htmlOutputWrapper(output){
+  if (outputContainer != undefined){
+    console.log(outputContainer)
+    outputContainer.innerHTML += `<p> ${output} </p>`  
+
+    outputContainer.scrollTop = outputContainer.scrollHeight
+
+  }
+}

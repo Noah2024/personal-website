@@ -16,9 +16,10 @@
   /* Functional Colors */
   /* --text-main: #C9CAAC; */
  --text-color-primary: #DFD0B8;
+ --text-color-secondary: #948979;
  --text-font-default: Quicksand;
-}
 
+}
 
 body {
     background-color: var(--backgound-primary);
@@ -35,14 +36,6 @@ header {
     padding: 0;
 }
 
-footer {
-    /* margin-top: auto; */
-    /* background-color: var(--background-secondary); */
-    color: var(--text-color-primary);
-    /* padding: 20px; */
-    text-align: center;
-    
-}
 main {
     flex: 1
 }

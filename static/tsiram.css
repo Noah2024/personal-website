@@ -1,0 +1,32 @@
+main {
+    /* width: 50vw;
+    height: 50vh; */
+    overflow: auto;
+    color: var(--text-color-primary);
+    display: flex;
+    flex-direction: row;
+    /* flex: 1 5; */
+    /* border: 1px, */
+    /* solid #ccc, */
+    /* padding: 10px; */
+}
+
+.control-bar {
+    color: var(--text-color-primary);
+    padding: 1rem;
+    flex: 1
+}
+
+.cpu-output {
+    color: black;
+    background-color: #FAF9F6;
+    margin: 1rem;
+    border-style: solid;
+    border-color: var(--background-secondary);
+    border-width: .25rem;
+    flex: 4;
+
+    height: 80vh;
+    overflow:auto;
+    min-height: 0;
+}
