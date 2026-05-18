@@ -1,19 +1,19 @@
 let memory;
 let wasmInstance;
 let CPU_ACTIVE = false;
+let CLOCK_INTERVAL = 20;
+let clockLoop;
 const decoder = new TextDecoder("utf-16le");
-const outputContainer = document.getElementsByClassName("cpu-output")[0]
+const outputLog = document.getElementsByClassName("cpu-log")[0]
+const outputReal = document.getElementsByClassName("cpu-output")[0]
 
 //Checking if there exists an output contianer for tsiram to output to
-if (outputContainer == undefined){
+if (outputLog == undefined){
+  console.log("Could not find location for tsiram log output, defaulting to console log only")
+}
+if (outputReal == undefined){
   console.log("Could not find location for tsiram output, defaulting to console log only")
 }
-
-//To do next
-// Add a toggle to ansci color codes on the log output of the CPU
-// - Test if that fixes things for the prefixed bytes
-//Test if the toggle allows for the use of the null terminator again
-
 
 //ChatGPT gen here
 // function readUtf16WasmString(ptr) {
@@ -121,21 +121,27 @@ function startSystem(){
   console.log("Starting system...")
   let system = wasmInstance.exports.startSystem();
   CPU_ACTIVE = true
+  //Checking if the user has set a valid clockInterval
+  if (setClockInterval() == false ){
+    return;
+  }
   console.log("System Started")
+  console.log(CLOCK_INTERVAL)
 
-  const clockLoop = setInterval(() => {
+  clockLoop = setInterval(() => {
     //CPU_ACTIVE represents the UI's ability to stop the clock, and clear its interval
-    //the CPU has a clockactive variable which can be set by the CPU to stopitself if necessary
+    //the CPU has a clockactive variable which can be set by the CPU to stopi tself (like when it reaches the end of its program)
     if (!CPU_ACTIVE) {
         clearInterval(clockLoop);
         return;
     }
     wasmInstance.exports.systemPulse();
-  }, 20); //I think this is in ms 
+  }, CLOCK_INTERVAL);
 }
 
 function stopSystem(){
     wasmInstance.exports.stopSystem()
+    clearInterval(clockLoop)
 }
 
 function restartSystem(){
@@ -160,14 +166,50 @@ btn2.onclick = function() {
 const btn3 = document.getElementById('RestartSystem');
 btn3.onclick = function(){
   restartSystem()
+  if (outputLog != undefined){
+    outputLog.innerHTML = "";
+    outputReal.innerHTML = "";
+     clearInterval(clockLoop)
+  }
+}
+
+const clockInput = document.getElementById("CLOCK_INTERVAL")
+function setClockInterval() {
+  if (clockInput.value.trim() === "") {
+    htmlOutputWrapper("CLOCK_INTERVAL cannot be empty")
+    return false
+  }
+
+  const value = Number(clockInput.value)
+
+  if (!Number.isInteger(value)) {
+    htmlOutputWrapper("CLOCK_INTERVAL must be a valid integer")
+    return false
+  }
+
+  CLOCK_INTERVAL = value
+  return true
 }
 
 function htmlOutputWrapper(output){
-  if (outputContainer != undefined){
-    console.log(outputContainer)
-    outputContainer.innerHTML += `<p> ${output} </p>`  
-
-    outputContainer.scrollTop = outputContainer.scrollHeight
-
+  if (outputLog != undefined){
+    outputLog.innerHTML += `<p> ${output} </p>`  
+    outputLog.scrollTop = outputLog.scrollHeight
+    if (output.slice(0,1) != "["){
+      outputReal.innerHTML += `${output} `
+    }
   }
 }
+
+// const textarea = document.querySelector(".ProgramInput")
+
+// function forceCursorEnd() {
+//   console.log("Bruh")
+//   console.log(JSON.stringify(textarea.value))
+//   const end = textarea.value.length
+//   textarea.setSelectionRange(end, end)
+// }
+
+// textarea.addEventListener("focus", () => setTimeout(forceCursorEnd, 0))
+// textarea.addEventListener("click", () => setTimeout(forceCursorEnd, 0))
+// textarea.addEventListener("keyup", forceCursorEnd)

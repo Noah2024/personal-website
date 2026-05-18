@@ -13,11 +13,23 @@ main {
 
 .control-bar {
     color: var(--text-color-primary);
-    padding: 1rem;
+    padding: .5rem;
     flex: 1
 }
 
 .cpu-output {
+    color: black;
+    background-color: #FAF9F6;
+    margin: 1rem;
+    padding-bottom: 0;
+    height: 1.5rem;
+}
+
+.cpu-section {
+    flex: 4
+}
+
+.cpu-log {
     color: black;
     background-color: #FAF9F6;
     margin: 1rem;
@@ -26,7 +38,15 @@ main {
     border-width: .25rem;
     flex: 4;
 
-    height: 80vh;
+    height: 78vh;
     overflow:auto;
     min-height: 0;
+}
+
+.ProgramInput {
+    height: 65vh;
+    width: auto;
+    margin: .5rem;
+    text-align: left;
+    padding: 0;
 }

@@ -20,12 +20,8 @@
             <button id="StopSystem"> Stop System </button>
             <button id="RestartSystem"> Restart System </button>
 
-            <div>
-                Start <br>
-            </div>
-            <div>
-                Stop <br>
-            </div>
+            <label >ClockSpeed (ms):</label>
+            <input type="text" id="CLOCK_INTERVAL" value="20">
              <div>
                 Clock Speed <br>
             </div>
@@ -35,10 +31,28 @@
             <div> 
                 Program (presets/custom)
             </div>
+            <label> Program Preset: </label>
+            <select id="cars" name="cars">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>
+            </select>
+            <!-- <label> Program Input: </label> -->
+            <textarea  class = "ProgramInput"></textarea>
+            <a href="/projects/tsiram/tsiramInstructionSet.pdf" target="_blank">Instruction Set</a>
+
+
         </div>
-        <div class="cpu-output"> 
-            
-        </div>>
+       
+        <div class="cpu-section"> 
+             <div class="cpu-log"> 
+            </div>
+
+            <div class="cpu-output">
+                <!-- <p> tmp </p> -->
+            </div>
+        </div>
     </main>
     
 </body>

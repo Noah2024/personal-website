@@ -4,5 +4,6 @@ footer {
     color: var(--text-color-primary);
     /* padding: 20px; */
     text-align: center;
+    margin-top: 0;
     
 }
