@@ -124,6 +124,8 @@ function startSystem(){
   console.log("System Started")
 
   const clockLoop = setInterval(() => {
+    //CPU_ACTIVE represents the UI's ability to stop the clock, and clear its interval
+    //the CPU has a clockactive variable which can be set by the CPU to stopitself if necessary
     if (!CPU_ACTIVE) {
         clearInterval(clockLoop);
         return;
@@ -133,7 +135,16 @@ function startSystem(){
 }
 
 function stopSystem(){
-    CPU_ACTIVE = false
+    wasmInstance.exports.stopSystem()
+}
+
+function restartSystem(){
+  wasmInstance.exports.restartSystem()
+}
+
+//This is the function to check if the CPU has decided internally to stop execution
+function clockStatus(){
+   return wasmInstance.exports.clockStatus();
 }
 
 const btn = document.getElementById('StartSystem');
@@ -145,6 +156,11 @@ const btn2 = document.getElementById('StopSystem');
 btn2.onclick = function() {
   stopSystem()
 };
+
+const btn3 = document.getElementById('RestartSystem');
+btn3.onclick = function(){
+  restartSystem()
+}
 
 function htmlOutputWrapper(output){
   if (outputContainer != undefined){
