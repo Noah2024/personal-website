@@ -22,26 +22,15 @@
 
             <label >ClockSpeed (ms):</label>
             <input type="text" id="CLOCK_INTERVAL" value="20">
-             <div>
-                Clock Speed <br>
-            </div>
-            <div>
-                Log Level <br>
-            </div>
-            <div> 
-                Program (presets/custom)
-            </div>
             <label> Program Preset: </label>
-            <select id="cars" name="cars">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="audi">Audi</option>
+            <select id="ProgramSelect">
+                <option value="Hello World",>Hello World</option>
+                <option value="Two + Two">Two + Two</option>
+                <option value="Tribonacci">Tribonacci</option>
             </select>
-            <!-- <label> Program Input: </label> -->
-            <textarea  class = "ProgramInput"></textarea>
-            <a href="/projects/tsiram/tsiramInstructionSet.pdf" target="_blank">Instruction Set</a>
-
+            <!-- Loaded with default "hello world" program -->
+            <textarea id="ProgramInput" class="ProgramInput">0xA2, 0x03, 0xFF, 0x06, 0x00, 0x00, 0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x20, 0x57, 0x6F, 0x72, 0x6C, 0x64, 0x21, 0x0A, 0x00</textarea>
+            <a href="/projects/tsiram/tsiramInstructionSet.pdf" target="_blank" style="color: var(--text-color-primary);">Instruction Set</a>
 
         </div>
        

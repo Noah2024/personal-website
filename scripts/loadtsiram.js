@@ -6,6 +6,13 @@ let clockLoop;
 const decoder = new TextDecoder("utf-16le");
 const outputLog = document.getElementsByClassName("cpu-log")[0]
 const outputReal = document.getElementsByClassName("cpu-output")[0]
+const programSelect = document.getElementById("ProgramSelect")
+const programInput = document.getElementById("ProgramInput")
+const programs = new Map();
+
+//ToDo
+//Ensure node uses new writeImmediate scheme
+// NEED TO ORGANZIE THIS FILE BETTER
 
 //Checking if there exists an output contianer for tsiram to output to
 if (outputLog == undefined){
@@ -15,45 +22,37 @@ if (outputReal == undefined){
   console.log("Could not find location for tsiram output, defaulting to console log only")
 }
 
-//ChatGPT gen here
-// function readUtf16WasmString(ptr) {
+//Declaring preset programs
+programs.set("Hello World", `0xA2, 0x03, 0xFF, 0x06, 0x00, 0x00, 0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x20, 0x57, 0x6F, 0x72, 0x6C, 0x64, 0x21, 0x0A, 0x00`)
+programs.set("Two + Two", `0xA9, 0x02, 0x8D, 0x10, 0x00, 0x6D, 0x10, 0x00, 0xA2, 0x01, 0xA8, 0xFF, 0x00`)
+programs.set("Tribonacci", `0xA9, 0x01,
+            0x8D, 0x47 ,0x00,
+            0x8D, 0x48, 0x00,
+            0xA9, 0x0B,
+            0x8D, 0x4B, 0x00,
+            0xEC, 0x4B, 0x00,
+            0xD0, 0x02, 0x00,
+            0x00,
+            0xA2, 0x01,
+            0xAC, 0x49, 0x00,
+            0xFF,
+            0xAD, 0x47, 0x00,
+            0x8D, 0x4A, 0x00,
+            0x6D, 0x48, 0x00,
+            0x6D, 0x49, 0x00,
+            0x8D, 0x47, 0x00,
+            0xAD, 0x48, 0x00,
+            0x8D, 0x49, 0x00,
+            0xAD, 0x4A, 0x00,
+            0x8D, 0x48, 0x00,
+            0xA9, 0xFF,
+            0x6D, 0x4B, 0x00,
+            0x8D, 0x4B, 0x00,
+            0xA2, 0x00,
+            0xEC, 0x4B, 0x00,
+            0xD0, 0xD0, 0x00,
+            0x00`)
 
-//     let start = ptr >>> 1; // faster than /2
-
-//     let end = start;
-
-//     // safety cap prevents infinite loops
-//     const max = memory.length;
-
-//     while (end < max && memory[end] !== 0) {
-//         end++;
-//     }
-
-//     // slice is fine (views, no copy yet)
-//     const slice = memory.subarray(start, end);
-
-//     // FAST conversion (no spread)Uint8Array
-//     return String.fromCharCode.apply(null, slice);
-// }
-
-// function readUtf16(ptr) {
-  
-//     // memory is already Uint16Array
-//       const memory = new Uint16Array(wasmInstance.exports.memory.buffer); // ALWAYS fresh view
-
-//     // 1. Read u16 length prefix
-//     const len = memory[ptr / 2];
-//     console.log("LEN AS:", len)
-
-//     // 2. Move past prefix (1 UTF-16 unit = 2 bytes)
-//     const start = (ptr / 2) + 1;
-
-//     // 3. Extract UTF-16 slice
-//     const slice = memory.subarray(start, start + len);
-
-//     // 4. Convert UTF-16 code units → JS string
-//     return String.fromCharCode(...slice);
-// }
 function readUtf16(ptr) {
     const memory = new Uint16Array(wasmInstance.exports.memory.buffer);
 
@@ -126,8 +125,7 @@ function startSystem(){
     return;
   }
   console.log("System Started")
-  console.log(CLOCK_INTERVAL)
-
+  writeImmediate(0, parseHexBytes(programInput.value))
   clockLoop = setInterval(() => {
     //CPU_ACTIVE represents the UI's ability to stop the clock, and clear its interval
     //the CPU has a clockactive variable which can be set by the CPU to stopi tself (like when it reaches the end of its program)
@@ -201,6 +199,40 @@ function htmlOutputWrapper(output){
   }
 }
 
+//Turns string to bytes
+function parseHexBytes(input) {
+  return input
+    .split(",")
+    .map(x => x.trim())                 // remove spaces/newlines
+    .filter(x => x.length > 0)         // remove empty entries
+    .map(x => parseInt(x, 16))         // convert hex → number
+}
+
+function parseToI32Array(str) {
+  return str
+    .split(",")
+    .map(x => x.trim())
+    .filter(x => x.length > 0)
+    .map(x => parseInt(x, 16))
+}
+
+function writeImmediate(index, bytes){
+  console.log(index, bytes)
+
+  for (let i = index; i < bytes.length-1; i++){
+    wasmInstance.exports.writeImmediate(i, bytes[i])
+  }
+  // console.log(bytesAsArray)
+
+  // wasmInstance.exports.writeImmediate(0, bytesAsArray)
+}
+
+programSelect.addEventListener("change", () => {
+  console.log(programSelect.value)
+  if (programSelect != undefined && programInput != undefined){
+    programInput.value = programs.get(programSelect.value)
+  }
+})
 // const textarea = document.querySelector(".ProgramInput")
 
 // function forceCursorEnd() {

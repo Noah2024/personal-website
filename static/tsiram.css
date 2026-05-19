@@ -45,7 +45,7 @@ main {
 
 .ProgramInput {
     height: 65vh;
-    width: auto;
+    width: 100%;
     margin: .5rem;
     text-align: left;
     padding: 0;
