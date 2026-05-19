@@ -33,3 +33,6 @@ go.work.sum
 
 #Couple of inspiration images for the style of my website
 inspiration/*
+
+#generated through populateProjects.sh
+projects/meta/**

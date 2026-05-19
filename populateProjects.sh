@@ -13,7 +13,13 @@ do
         echo "No image for repo $repoName... using default"
         repoImage="./static/images/default.png"
     fi
+    echo $repoName
+    mkdir -p "$(dirname "projects/meta/$repoName/README.md")"
 
+    curl -L \
+      -H "Accept: application/vnd.github.raw+json" \
+      -H "Authorization: Bearer $ghPAT" \
+      https://api.github.com/repos/$repoOwner/$repoName/readme > projects/meta/$repoName/README.md
+    # curl -L https://raw.githubusercontent.com/Noah2024/422-tsiraM/master/README.md -o README.md
 
 done < includedProjects.csv
-
