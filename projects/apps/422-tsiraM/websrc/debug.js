@@ -31,6 +31,10 @@ async function instantiate(module, imports = {}) {
       // src/wasmIndex/startSystem() => src/System/System | null
       return __liftInternref(exports.startSystem() >>> 0);
     },
+    clockstatus() {
+      // src/wasmIndex/clockstatus() => bool
+      return exports.clockstatus() != 0;
+    },
   }, exports);
   function __liftString(pointer) {
     if (!pointer) return null;
@@ -86,7 +90,11 @@ export const {
   memory,
   initWasm,
   startSystem,
+  stopSystem,
   systemPulse,
+  clockstatus,
+  restartSystem,
+  writeImmediate,
 } = await (async url => instantiate(
   await (async () => {
     const isNodeOrBun = typeof process != "undefined" && process.versions != null && (process.versions.node != null || process.versions.bun != null);

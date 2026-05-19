@@ -11,7 +11,6 @@ const programInput = document.getElementById("ProgramInput")
 const programs = new Map();
 
 //ToDo
-//Ensure node uses new writeImmediate scheme
 // NEED TO ORGANZIE THIS FILE BETTER
 
 //Checking if there exists an output contianer for tsiram to output to
@@ -83,7 +82,7 @@ const imports = {
 };
 
 async function loadWasm()  {
-  const response = await fetch("../projects/tsiram/websrc/debug.wasm");
+  const response = await fetch("../projects/apps/422-tsiraM/websrc/debug.wasm");
   const bytes = await response.arrayBuffer();
   const { instance, module } = await WebAssembly.instantiate(bytes, imports);
 
@@ -96,24 +95,7 @@ async function loadWasm()  {
 }
 
 loadWasm().then(instance => {
-  // startSystem()
-  //Esnures wasm memory has been instanciated firs
-  // instance.exports.initWasm() 
-  // console.log("Exports:", readUtf16(instance.exports.initWasm()));
-  // instance.exports.start
-  // // const memory = new Uint16Array(instance.exports.memory.buffer);
 
-  // // console.log(Object.keys(instance.exports));
-  // // instance.exports["$export:src/wasmIndex/createAndLoadSystem"]();
-  // let out = instance.exports.createAndLoadSystem()
-  // console.log(readUtf16WasmString(out))
-  // let out2 = instance.exports.startSystem();  
-
-  // console.log("START")
-  // console.log(out)
-  // console.log(out2)
-  // console.log("FIN")
-  // console.log(`WHAT THE FUCKING FUCKER FUCKING $}`)
 });
 
 function startSystem(){
