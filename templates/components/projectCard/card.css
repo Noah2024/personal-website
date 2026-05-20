@@ -27,6 +27,16 @@
         0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+.card-container.expanded {
+  position: fixed;
+  /* transform: translate(); */
+  width: 85vw;
+  height: 85vh;
+  top: 0%;
+  left: 0%;
+  z-index: 100;
+}
+
 /* .card-container:focus-within{
     background-color: brown;
 } */

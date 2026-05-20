@@ -57,8 +57,9 @@ main {
 }
 
 .fullover.show {
-    opacity: 1 !important;
-    visibility: visible !important;
+    /* transition: opacity .5s ; */
+    opacity: 1;
+    visibility: visible;
     /* background: red !important; */
 }
 
