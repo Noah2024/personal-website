@@ -1,4 +1,6 @@
 #!bin/bash
+#Warning, git likes the get fucky with CLRF and LF in the csv file
+#Make sure the CSV file is using LF and not CLRF when running this script
 source .env
 while IFS=',' read -r col1
 do 
@@ -20,6 +22,9 @@ do
       -H "Accept: application/vnd.github.raw+json" \
       -H "Authorization: Bearer $ghPAT" \
       https://api.github.com/repos/$repoOwner/$repoName/readme > projects/meta/$repoName/README.md
-    # curl -L https://raw.githubusercontent.com/Noah2024/422-tsiraM/master/README.md -o README.md
 
+    curl -L \
+    -H "Accept: application/vnd.github+json" \
+    -H "Authorization: Bearer $ghPAT" \
+    https://api.github.com/repos/$repoOwner/$repoName/languages
 done < includedProjects.csv

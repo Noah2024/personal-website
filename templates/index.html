@@ -5,23 +5,29 @@
     <meta name="personal-website">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/main.css"> 
+    <script src="../scripts/main.js" defer></script>
     <script type="module" src="./components/header/header.js"></script>
     <script type="module" src="./components/footer/footer.js"></script>
     <script type="module" src="./components/projectCard/card.js"></script>
     <title> indoshon </title>
 </head>
 
-<app-header></app-header>
 <body>
-
+    <!-- fullscreen element overlay -->
+    <div id="fullover" class="fullover"> </div>
+    <app-header></app-header>
     <main> 
-      <project-card title="PLEASE"></project-card>
+        
+        <project-card title="PLEASE"></project-card>
+        <project-card title="PLEASE"></project-card>
+        <project-card title="PLEASE"></project-card>
+        
     </main>
     <!-- <footer> 
         <p> &copy 2026 Noah Yurasko. All Rights Reserved. </p>
     </footer> -->
+    <app-footer></app-footer>
 
 </body>
-<app-footer></app-footer>
 
 </html>
