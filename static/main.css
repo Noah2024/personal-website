@@ -37,7 +37,7 @@ header {
 }
 
 main {
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     align-items: center;
 }
@@ -53,16 +53,15 @@ main {
 
     opacity: 0; 
     visibility: hidden;
-    transition: opacity .5s ;
+
+    transition:
+        opacity 0.5s ease,
+        visibility 0s linear 0.5s; /
+        /* Even visibility cannont be interpolated, its state can still be delayed */
 }
 
 .fullover.show {
-    /* transition: opacity .5s ; */
     opacity: 1;
     visibility: visible;
-    /* background: red !important; */
+    transition: opacity .5s ease;
 }
-
-/* .fullover.tmp {
-    background-color: red;
-} */

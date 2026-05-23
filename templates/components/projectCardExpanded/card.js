@@ -9,8 +9,8 @@ export default class ProjectCard extends HTMLElement{
         console.log(title)
 
         this.innerHTML = `
-        <link rel="stylesheet" href="./components/projectCard/card.css">
-        <div class="card-container" tabindex="0">
+        <link rel="stylesheet" href="./components/projectCardExpanded/card.css">
+        <div class="card-container-expanded" tabindex="0">
 
             <img class="repo-image" src="../static/images/default.svg">
 
@@ -38,4 +38,4 @@ export default class ProjectCard extends HTMLElement{
         </div>
         `;
     }
-}customElements.define("project-card", ProjectCard)
+}customElements.define("project-card-expanded", ProjectCard)
