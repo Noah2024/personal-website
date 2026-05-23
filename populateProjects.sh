@@ -1,6 +1,7 @@
-#!bin/bash
+#!/bin/bash
 #Warning, git likes the get fucky with CLRF and LF in the csv file
 #Make sure the CSV file is using LF and not CLRF when running this script
+source ~/.bashrc
 source .env
 while IFS=',' read -r col1
 do 
@@ -13,7 +14,7 @@ do
     repoImage="./static/iamges/project/$repoName"
     if [[ ! -f "$repoImage" ]]; then
         echo "No image for repo $repoName... using default"
-        repoImage="./static/images/default.png"
+        repoImage="./static/images/default.svg"
     fi
     echo $repoName
     mkdir -p "$(dirname "projects/meta/$repoName/README.md")"
@@ -27,4 +28,6 @@ do
     -H "Accept: application/vnd.github+json" \
     -H "Authorization: Bearer $ghPAT" \
     https://api.github.com/repos/$repoOwner/$repoName/languages
+
+    pandoc.exe projects/meta/$repoName/README.md -o projects/meta/$repoName/README.html < /dev/null
 done < includedProjects.csv
