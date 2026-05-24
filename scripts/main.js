@@ -2,18 +2,15 @@
 //And is only hidden AFTER the animation fin
 
 document.addEventListener('DOMContentLoaded', () => {
-    const cards = document.getElementsByClassName('card-container');
-    const cardsExpanded = document.getElementsByClassName('card-container-expanded');
-    // const cards = document.getElementsByClassName('card-container');
+    const cards = [...document.getElementsByClassName('card-container')].filter(el => el.className.trim() === "card-container");
+    const cardsExpanded = document.getElementsByClassName('card-container expanded');
     const fullOver = document.getElementsByClassName('fullover')[0];
-
-    //Setting up cards to be animated  correctly
 
     Array.from(cards).forEach((card, index) => {
         card.addEventListener('focusin', () => {
             fullOver.classList.toggle('show');
             let cardExpanded = cardsExpanded[index]
-            makeVisible(cardExpanded)
+            makeVisible(cardsExpanded[index])
             expandAnimation(card, cardExpanded, cardExpanded, false);
             cardExpanded.focus(); //So we can click out of it immediatley
         });
@@ -21,12 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     Array.from(cardsExpanded).forEach((cardExpanded, index) => {
 
-        cardExpanded.addEventListener('focusout', () => {
+        cardExpanded.addEventListener('focusout', (event) => {
 
-            //Allows for clickable elements inside the card
-            // if (!cardExpanded.contains(cardExpanded.relatedTarget)) {
-            //     // collapse
-            // }
+            // Allows for clickable elements inside the card
+            if (event.relatedTarget != null && cardExpanded.contains(event.relatedTarget)) {
+                return
+            }
+
             fullOver.classList.toggle('show');
             console.log("Foucous out")
             let card = cards[index]

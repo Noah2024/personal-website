@@ -10,9 +10,11 @@ export default class ProjectCard extends HTMLElement{
 
         this.innerHTML = `
         <link rel="stylesheet" href="./components/projectCardExpanded/card.css">
-        <div class="card-container-expanded" tabindex="0">
+        <script src="./components/projectCardExpanded/loadHtml.js"></script>
 
-            <img class="repo-image" src="../static/images/default.svg">
+        <div class="card-container expanded" tabindex="0">
+
+            <img class="repo-image expanded" src="../static/images/default.svg">
 
             <div class="repo-content">
 
@@ -30,12 +32,19 @@ export default class ProjectCard extends HTMLElement{
                     <span class="repo-tag">Networking</span>
                 </div>
 
-                <div class=readme>
+                <div class=readme-container>
                 </div>
 
             </div>
 
         </div>
         `;
+         fetch('/projects/meta/422-tsiraM/README.html')
+            .then(response => response.text())
+            .then(data => {
+                this.querySelector(".readme-container").innerHTML = data;
+            })
+            .catch(err => console.error(err));
     }
+    
 }customElements.define("project-card-expanded", ProjectCard)

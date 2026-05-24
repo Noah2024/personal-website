@@ -5,7 +5,6 @@ export default class ProjectCard extends HTMLElement{
 
     connectedCallback(){
         const title = this.getAttribute("title") || "default"
-        this.s
         console.log(title)
 
         this.innerHTML = `
