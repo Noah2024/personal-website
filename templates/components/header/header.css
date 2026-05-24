@@ -20,7 +20,7 @@
 }
 
 .navmain li{
-    display: flex;
+    display: inline-flex;
     align-items: center;
 }
 
@@ -37,6 +37,12 @@
     position: relative;
 
     justify-self: center;
+    transform: translateY(0px);
+    transition: transform .25s;
+}
+
+.navman a:hover{
+    transform: translateY(-4px);
 }
 
 .navmain a:hover::after,
