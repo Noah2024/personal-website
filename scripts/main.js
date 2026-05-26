@@ -1,6 +1,6 @@
 //No need to track card state for debounce becuase the overlay prevents interaction while still visible
 //And is only hidden AFTER the animation fin
-
+console.log("[NOTE] Images from imported README project repos are NOT imported; there may be some 404 not founds here as a result")
 document.addEventListener('DOMContentLoaded', () => {
     const cards = [...document.getElementsByClassName('card-container')].filter(el => el.className.trim() === "card-container");
     const cardsExpanded = document.getElementsByClassName('card-container expanded');
