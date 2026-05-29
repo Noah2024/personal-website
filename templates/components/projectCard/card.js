@@ -1,8 +1,8 @@
-export function card(title, lastCommit, bytes, summary, tags, demo){
+export function card(title, lastCommit, bytes, summary, tags, demo, curtDir){
      return `
         <div class="card-container" tabindex="0">
 
-            <img class="repo-image" src="../static/images/default.svg">
+            <img class="repo-image" src="${curtDir}/default.png">
 
             <div class="repo-content">
 

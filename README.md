@@ -1,0 +1,1 @@
+the source code for my personal projects, including the CICD processes I use to automatically add projects and build the source on my home server. 

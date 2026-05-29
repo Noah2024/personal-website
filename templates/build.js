@@ -19,7 +19,7 @@ const html = `
     <link rel="stylesheet" href="./templates/components/projectCard/card.css">
     <link rel="stylesheet" href="./templates/components/projectCardExpanded/card.css">
 
-    <title> indoshon </title>
+    <title> indoshon.com </title>
 </head>
 
 <body>
@@ -32,7 +32,6 @@ const html = `
 
     ${Header()}
     <main> 
-        <!-- These must be inline with their expanded versions in the card-overlay div -->
         ${cardHtml}
     </main>
     ${Footer()}

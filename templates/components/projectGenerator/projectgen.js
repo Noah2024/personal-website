@@ -45,7 +45,6 @@ function interactiveDemo(appname){
     return [`<span class="click-for-info"> click for more info </span>`,""]
 }
 
-
 export function projectGenerator(){
     fs.readdirSync(metaDir).forEach(file => {
         const projname = file
@@ -74,14 +73,16 @@ export function projectGenerator(){
                 bytes, 
                 genSummary(readmemd), 
                 tags, 
-                interactiveDemo(metajson.name))
+                interactiveDemo(metajson.name),
+                curtDir)
 
             cardExpandedHTML += projectCardExpanded(metajson.name,
                 metajson.pushed_at, 
                 bytes, 
                 readmehtml, 
                 tags, 
-                interactiveDemo(metajson.name))
+                interactiveDemo(metajson.name),
+                curtDir)
             // console.log(cardHTML)
         }
 });
