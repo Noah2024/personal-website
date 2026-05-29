@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/main.css"> 
     <script src="../scripts/main.js" defer></script>
-    <script type="module" src="./components/header/header.js"></script>
-    <script type="module" src="./components/footer/footer.js"></script>
-    <script type="module" src="./components/projectCard/card.js"></script>
-    <script type="module" src="./components/projectCardExpanded/card.js"></script> 
+    <script type="module" src="./templates/components/header/header.css"></script>
+    <script type="module" src="./tempaltes/components/footer/footer.css"></script>
+    <script type="module" src="./templates/components/projectCard/card.css"></script>
+    <script type="module" src="./templates/components/projectCardExpanded/card.css"></script> 
+    <script type="module" src="./templates/components/projectGenerator/projectgen.js"></script> 
+
     <script type="module" src = "./components/tag/tag.js"></script>
     <title> indoshon </title>
 </head>
@@ -18,32 +20,27 @@
     <!-- fullscreen blurr overlay -->
     <div id="fullover" class="fullover"> </div>
     <!-- fullscreen card overlay -->
-    <div class="card-overlay">
-        
-    </div>
+
     <app-header></app-header>
     <main> 
         <!-- These must be inline with their expanded versions in the card-overlay div -->
-        <project-card 
-            title="422-tsiraM"
-            summary="tsiram is a virtual 6502 CPU crosscompatable with node and WebAssembly (interactive web demonstration available)"
-            lastCommit = "[Not Provided]"
-            tags = "testing, testing, testing"
-        ></project-card>
-
-
-         <!-- These must be inline with their regular sized counterparts -->
-        <project-card-expanded 
-        title="PLEASE EXPAND"
-        tags = "testing, testing, testing"
-        ></project-card-expanded>
 
     </main>
-    <!-- <footer> 
-        <p> &copy 2026 Noah Yurasko. All Rights Reserved. </p>
-    </footer> -->
     <app-footer></app-footer>
 
 </body>
 
 </html>
+
+ <!-- <project-card 
+    title="422-tsiraM"
+    summary="tsiram is a virtual 6502 CPU crosscompatable with node and WebAssembly (interactive web demonstration available)"
+    lastCommit = "[Not Provided]"
+    tags = "testing, testing, testing"
+></project-card>
+
+
+<project-card-expanded 
+    title="PLEASE EXPAND"
+    tags = "testing, testing, testing"
+></project-card-expanded> -->

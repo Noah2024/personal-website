@@ -1,16 +1,7 @@
-export default class ProjectCard extends HTMLElement{
-    constructor(){
-        super();
-    }
-
-    connectedCallback(){
-        const title = this.getAttribute("title") || "[Not Provided]" 
-        const lastCommit = this.getAttribute("lastCommit") || "[No Commit Provided]]"
-        const bytes = this.getAttribute("bytes") || "[Not Provided]"
-        let tags = this.getAttribute("tags") || ""
-
-        this.innerHTML = `
-        <link rel="stylesheet" href="./components/projectCardExpanded/card.css">
+export function card(title, lastCommit, bytes, readme, tags){
+        console.log("Read me below:::")
+        console.log(readme)
+        return `
         <div class="card-container expanded" tabindex="0">
 
             <img class="repo-image expanded" src="../static/images/default.svg">
@@ -26,31 +17,24 @@ export default class ProjectCard extends HTMLElement{
                 </div>
 
                 <div class="tag-container">
-                    
+                    ${tags}
                 </div>
 
                 <div class=readme-container>
+                    ${readme}
                 </div>
 
             </div>
 
         </div>
-        `;
-        //Gets html of readme
-         fetch('/projects/meta/422-tsiraM/README.html')
-            .then(response => response.text())
-            .then(data => {
-                this.querySelector(".readme-container").innerHTML = data;
-            })
-            .catch(err => console.error(err));
+        `;         
         //Inserts tag elements dynamically
-         const tagContainer = this.querySelector(".tag-container")
-         if (tagContainer != null){
-             for (const [tagIndex, tagValue] of tags.split(",").entries()){
-                 tagContainer.innerHTML += `<span class="repo-tag">${tagValue}</span>`
+        //  const tagContainer = this.querySelector(".tag-container")
+        //  if (tagContainer != null){
+        //      for (const [tagIndex, tagValue] of tags.split(",").entries()){
+        //          tagContainer.innerHTML += `<span class="repo-tag">${tagValue}</span>`
             
-             }
-         }
-    }
+        //      }
+        //  }
+}
     
-}customElements.define("project-card-expanded", ProjectCard)

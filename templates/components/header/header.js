@@ -1,12 +1,6 @@
-export default class Header extends HTMLElement{
-    constructor(){
-        super();
+export default function Header() {
 
-        const shadow = this.attachShadow({mode: 'open'});
-
-        shadow.innerHTML = `
-        <link rel="stylesheet" href="./components/header/header.css">
-
+        return `
         <header>
             <nav class = "navmain"> 
                 <ul>
@@ -24,4 +18,3 @@ export default class Header extends HTMLElement{
         </header>
         `;
     }
-}customElements.define("app-header", Header)

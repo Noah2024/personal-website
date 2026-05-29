@@ -24,10 +24,18 @@ do
       -H "Authorization: Bearer $ghPAT" \
       https://api.github.com/repos/$repoOwner/$repoName/readme > projects/meta/$repoName/README.md
 
+    curl -H "Authorization: token $ghPAT" \
+     -H "Accept: application/vnd.github+json" \
+     https://api.github.com/repos/$repoOwner/$repoName > projects/meta/$repoName/meta.json
+
     curl -L \
     -H "Accept: application/vnd.github+json" \
     -H "Authorization: Bearer $ghPAT" \
-    https://api.github.com/repos/$repoOwner/$repoName/languages
+    https://api.github.com/repos/$repoOwner/$repoName/languages > projects/meta/$repoName/lang.json
 
     pandoc.exe projects/meta/$repoName/README.md -o projects/meta/$repoName/README.html < /dev/null
+
+    # sed -i '/!<DOCTYPE html>/a\ Please Work' ./templates/index.html
+    #Inserting Summary Card
+
 done < includedProjects.csv
