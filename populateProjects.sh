@@ -51,3 +51,5 @@ do
     #Inserting Summary Card
 
 done < includedProjects.csv
+
+node templates/build.js
