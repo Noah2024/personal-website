@@ -7,6 +7,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const projectsDir = "./projects";
+const appDir = "./projects/apps"
 const metaDir =  "./projects/meta";
 const readmeHTMLName = "README.html"
 const readmeMDName = "README.md"
@@ -20,16 +21,28 @@ function genTags(bytesAsJson){
     let ttlBytes = 0;
     let rtnTags = ""
     Object.entries(bytesAsJson).forEach(([language, value]) => {
-        ttlBytes += value;
+        // console.log(parseInt(value, 10))
+        ttlBytes += parseInt(value, 10);
         rtnTags += `<span class="repo-tag">${language}</span>`
     });
-    return ttlBytes, rtnTags
+    console.log(ttlBytes)
+    return [ttlBytes, rtnTags]
 }
 
 function genSummary(readmemd){
-    console.log("Summary")
-    console.log(readmemd)
     return readmemd.slice(0, 155) + "..."
+}
+
+function interactiveDemo(appname){
+    const apppath = path.join(appDir, appname)
+    if (fs.existsSync(apppath)){
+        const tagline =  `<span class="click-for-info"> interactive demo available </span>`
+        const demobtn = `<a href="${path.join(apppath, "demo.html")}" target="_blank">
+                            <button class = "demo-button"type="button">Interactive Demo</button>
+                        </a>`
+        return [tagline, demobtn]
+    }
+    return [`<span class="click-for-info"> click for more info </span>`,""]
 }
 
 
@@ -43,9 +56,6 @@ export function projectGenerator(){
             const readmeHTMLpath = path.join(curtDir, readmeHTMLName)
             const readmeMDpath = path.join(curtDir, readmeMDName)
 
-
-            //Handle the metadata
-
             const meta = fs.readFileSync(metapath, "utf-8")
             const metajson =  JSON.parse(meta)
 
@@ -53,20 +63,28 @@ export function projectGenerator(){
             const langjson =  JSON.parse(lang)
 
             const readmehtml = fs.readFileSync(readmeHTMLpath, "utf-8")
-            // console.log(readmehtml)
             const readmemd = fs.readFileSync(readmeMDpath, "utf-8")
-            
-            let bytes, tags = genTags(langjson)
 
-            cardHTML += projectCard(metajson.name, metajson.pushed_at, bytes, genSummary(readmemd), tags)
-            cardExpandedHTML += projectCardExpanded(metajson.name,metajson.pushed_at, bytes, readmehtml, tags)
+            const apppath = path.join(projectsDir, "apps", metajson.name)
+            
+            const [ bytes, tags] = genTags(langjson)
+
+            cardHTML += projectCard(metajson.name, 
+                metajson.pushed_at, 
+                bytes, 
+                genSummary(readmemd), 
+                tags, 
+                interactiveDemo(metajson.name))
+
+            cardExpandedHTML += projectCardExpanded(metajson.name,
+                metajson.pushed_at, 
+                bytes, 
+                readmehtml, 
+                tags, 
+                interactiveDemo(metajson.name))
             // console.log(cardHTML)
         }
 });
 
     return [`${cardHTML}`, `${cardExpandedHTML}`]//projects.map(projectCard).join("\n");
 }
-
-//  <div class="card-overlay">
-//             ${cardExtendedHTML}
-//          </div>

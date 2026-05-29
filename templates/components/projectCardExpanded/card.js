@@ -1,6 +1,4 @@
-export function card(title, lastCommit, bytes, readme, tags){
-        console.log("Read me below:::")
-        console.log(readme)
+export function card(title, lastCommit, bytes, readme, tags, demo){
         return `
         <div class="card-container expanded" tabindex="0">
 
@@ -9,11 +7,13 @@ export function card(title, lastCommit, bytes, readme, tags){
             <div class="repo-content">
 
                 <h2 class="repo-title">${title}</h2>
+                <div class = "repo-header"> 
+                    <div class="repo-meta">
+                        <span>Last Commit:${lastCommit}</span>
+                        <span>Bytes: ${bytes}</span>
+                    </div>
 
-                <div class="repo-meta">
-                    <span>Last Commit:${lastCommit}</span>
-                    <span>
-                    <span>Bytes: ${bytes}</span>
+                    ${demo[1]}
                 </div>
 
                 <div class="tag-container">
@@ -28,13 +28,5 @@ export function card(title, lastCommit, bytes, readme, tags){
 
         </div>
         `;         
-        //Inserts tag elements dynamically
-        //  const tagContainer = this.querySelector(".tag-container")
-        //  if (tagContainer != null){
-        //      for (const [tagIndex, tagValue] of tags.split(",").entries()){
-        //          tagContainer.innerHTML += `<span class="repo-tag">${tagValue}</span>`
-            
-        //      }
-        //  }
 }
     

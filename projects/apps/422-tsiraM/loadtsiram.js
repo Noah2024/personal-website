@@ -75,14 +75,12 @@ const imports = {
         let str = readUtf16(...args);
         console.log("[tsiram]", str);
         htmlOutputWrapper(str)
-        // console.log("[wasm]", ...args);
-
     }
   }
 };
 
 async function loadWasm()  {
-  const response = await fetch("../projects/apps/422-tsiraM/websrc/debug.wasm");
+  const response = await fetch("./websrc/debug.wasm");
   const bytes = await response.arrayBuffer();
   const { instance, module } = await WebAssembly.instantiate(bytes, imports);
 
@@ -215,15 +213,3 @@ programSelect.addEventListener("change", () => {
     programInput.value = programs.get(programSelect.value)
   }
 })
-// const textarea = document.querySelector(".ProgramInput")
-
-// function forceCursorEnd() {
-//   console.log("Bruh")
-//   console.log(JSON.stringify(textarea.value))
-//   const end = textarea.value.length
-//   textarea.setSelectionRange(end, end)
-// }
-
-// textarea.addEventListener("focus", () => setTimeout(forceCursorEnd, 0))
-// textarea.addEventListener("click", () => setTimeout(forceCursorEnd, 0))
-// textarea.addEventListener("keyup", forceCursorEnd)

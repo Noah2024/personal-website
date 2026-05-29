@@ -34,4 +34,40 @@
     color: var(--text-color-primary);
 }
 
+.repo-header {
+    display: flex;
+    flex-direction: row;
+    gap: 75%
+}
 
+/* Demo buton AI generated, cause I ran out of will to handcode more css by trial and error */
+.demo-button {
+    background: linear-gradient(135deg, #64a44b, #4d8d38);
+    color: white;
+    padding: 12px 24px;
+    border: 2px solid #376126;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    opacity: 0.95;
+
+    /* Smooth animations */
+    transition: transform 0.2s ease-in-out;
+
+    /* Subtle depth */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover effect */
+.demo-button:hover {
+    background: linear-gradient(135deg, #72b857, #5a9e43);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+/* Click effect */
+.demo-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
