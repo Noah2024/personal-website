@@ -3,18 +3,12 @@
 #Make sure the CSV file is using LF and not CLRF when running this script
 source ~/.bashrc
 source .env
-pwd
+# pwd
 while IFS=',' read -r col1
 do 
     IFS="/" read -ra parts <<< "$col1"
     repoName="${parts[-1]}"
     repoOwner="${parts[-2]}"
-    # repoImage="./static/iamges/project/$repoName.png"
-    # echo $repoImage
-    # if [[ ! -f "$repoImage" ]]; then
-    #     echo "No image for repo $repoName... using default"
-    #     repoImage="./static/images/default.png"
-    # fi
     echo $repoName
     mkdir -p "$(dirname "projects/meta/$repoName/README.md")"
 
@@ -47,9 +41,8 @@ do
 
     pandoc.exe projects/meta/$repoName/README.md -o projects/meta/$repoName/README.html < /dev/null
 
-    # sed -i '/!<DOCTYPE html>/a\ Please Work' ./templates/index.html
-    #Inserting Summary Card
+    
 
 done < includedProjects.csv
 
-node templates/build.js
+node.exe templates/build.js

@@ -35,8 +35,8 @@ const html = `
         <h1 id="home"> INDOSHON.com </h1>
         <div class="aboutme-container">
             <p> Welcome friends, family, countrymen, (potential employeers), welcome to indoshon.com.
-            The personal website mananged by and for Noah (indoshon) Yurasko, enjoy! (and if you thinking 'now who tf actually is Noah', luckily there is something called an about me section)
-            Please puruse the few personal projects (one or two from groups) which I actually am proud of. 
+            The personal website mananged by and for Noah (indoshon) Yurasko, enjoy! (and if you thinking 'now who actually is Noah', luckily there is something called an about me section)
+            Please peruse the few personal projects which I am actually proud of. 
             </p>
         </div>
        
@@ -69,7 +69,7 @@ const html = `
                 even when working with AI tooling.  
 
                 <br><br> 
-                This policy is rooted in the belief that it's a REALLY BAD THING to allow all human knowledge to become utility bought and sold by big tech 
+                This policy is rooted in the belief that it's a REALLY BAD THING to allow all human knowledge to become utility bought and sold by big tech.
                 Cause seriously, having our ability to think slowly degraded then sold back to us just so some rich ass hole can be even more rich is genuinely terrifying. 
             </p>
         </div>
@@ -88,8 +88,4 @@ const html = `
 </body>
 </html>
 `
-fs.writeFileSync("./index2.html", html);
-{/* <div class="aboutme-container"> 
-            <h1> Welcome! </h2>
-            <p> Welcome friends, family, countrymen, (potential employeers...), welcome to indoshon.com. 
-        </div> */}
+fs.writeFileSync("./index.html", html);
