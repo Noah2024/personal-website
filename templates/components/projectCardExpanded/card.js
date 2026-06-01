@@ -1,4 +1,4 @@
-export function card(title, lastCommit, bytes, readme, tags, demo, curtDir){
+export function card(title, lastCommit, bytes, readme, tags, demo, curtDir, link){
         return `
         <div class="card-container expanded" tabindex="0">
 
@@ -23,6 +23,11 @@ export function card(title, lastCommit, bytes, readme, tags, demo, curtDir){
                 <div class=readme-container>
                     ${readme}
                 </div>
+
+                <span>
+                    For more information please visit:
+                    <a href="${link}">${link}</a>
+                </span>
 
             </div>
 

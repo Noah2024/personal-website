@@ -66,6 +66,7 @@ export function projectGenerator(){
 
             const apppath = path.join(projectsDir, "apps", metajson.name)
             
+            const link = metajson.html_url
             const [ bytes, tags] = genTags(langjson)
 
             cardHTML += projectCard(metajson.name, 
@@ -82,7 +83,8 @@ export function projectGenerator(){
                 readmehtml, 
                 tags, 
                 interactiveDemo(metajson.name),
-                curtDir)
+                curtDir,
+                link)
             // console.log(cardHTML)
         }
 });
