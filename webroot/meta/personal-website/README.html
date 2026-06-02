@@ -1,0 +1,30 @@
+<h1 id="personal-website">personal-website</h1>
+<p>This repository contains the source code for my personal website
+project. It includes a basic Go HTTP server, frontend templates, static
+assets, and scripts used to include new projects, the sites index is
+compiled statically using node. All animations are done nateivly in html
+css and javascript.</p>
+<h2 id="overview">Overview</h2>
+<ul>
+<li><code>main.go</code> launches a simple Go server.</li>
+<li><code>http_server/</code> will contain routes and server logic when
+the need arises.</li>
+<li><code>templates/</code> holds HTML templates used by the site.</li>
+<li><code>static/</code> includes CSS, fonts, and image assets.</li>
+<li><code>projects/</code> stores project data as well as interactive
+demos where possible, generated with populateProjects.sh</li>
+<li><code>scripts/</code> and <code>populateProjects.sh</code> are used
+to manage or generate website content.</li>
+</ul>
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Template and static files are organized under
+<code>templates/</code> and <code>static/</code> for site
+rendering.</li>
+<li><code>includedProjects.csv</code> may be used to control which
+projects are published or listed. Only adds new projects, does not
+remove ones already listed, that is still done manually</li>
+<li>Currently the one demo for tsiram is built dynamically at runtime,
+rather than statically. That is becuase I didn’t want to deal with
+compiling wasm into the final static version.</li>
+</ul>

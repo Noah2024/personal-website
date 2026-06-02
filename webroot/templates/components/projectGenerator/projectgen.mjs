@@ -1,14 +1,14 @@
 //Generator responsible for creating all the cards from included project metadata
 import { ChildProcess } from "node:child_process";
-import {card as projectCard } from "../projectCard/card.js"
-import {card as projectCardExpanded} from "../projectCardExpanded/card.js"
+import {card as projectCard } from "../projectCard/card.mjs"
+import {card as projectCardExpanded} from "../projectCardExpanded/card.mjs"
 // import projects from "../projects" assert { type: "json" };
 import fs from 'node:fs';
 import path from 'node:path';
 
-const projectsDir = "./projects";
-const appDir = "./projects/apps"
-const metaDir =  "./projects/meta";
+const projectsDir = "./webroot";
+const appDir = "./webroot/apps"
+const metaDir =  "./webroot/meta";
 const readmeHTMLName = "README.html"
 const readmeMDName = "README.md"
 const langname = "lang.json"

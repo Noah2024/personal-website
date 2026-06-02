@@ -7,6 +7,7 @@ import (
 )
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
+<<<<<<< Updated upstream
 	fmt.Fprint(w, "Hello testing the url %s\n", r.URL.Path)
 	bodyBytes, err := io.ReadAll(r.Body)
 	if err != nil {
@@ -18,6 +19,9 @@ func helloHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(bodyString)
 
 	// err := os.WriteFile("tmp.json", []byte(r.Body))
+=======
+	fmt.Fprint(w, "Hello testing (BIG TEST) the url %s\n", r.URL.Path)
+>>>>>>> Stashed changes
 }
 
 func Start() {

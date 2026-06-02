@@ -36,3 +36,9 @@ inspiration/*
 
 #generated through populateProjects.sh
 projects/meta/**
+
+#generated go binary
+indoshon-web-routes
+
+#generated static html
+index.html
