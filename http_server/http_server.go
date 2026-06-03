@@ -6,8 +6,7 @@ import (
 	"io"
 	"net/http"
 	"strings"
-	"github.com/joho/godotenv"
-
+	"os/exec"
 
 	"crypto/hmac"
 	"crypto/sha256"
@@ -16,6 +15,7 @@ import (
 
 //Web secret initalized at runtime from .env
 var webSecret = ""
+var updatePath = ""
 
 func handleApiRoot(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "Hello testing the url %s\n", r.URL.Path)
@@ -65,6 +65,12 @@ func handleWebsiteUpdate(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Webhook verified! Starting update")
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("Webhook processed"))
+		// Executing scripts to reload website && api routes
+		cmd := exec.Command("bash", updatePath)
+		_, err := cmd.CombinedOutput()
+		if err != nil {
+			fmt.Printf("Error updating HTML: %s\n", err)
+		}
 	}else{
 		http.Error(w, "Invalid Signature", http.StatusUnauthorized)
 	}
@@ -74,14 +80,13 @@ func handleWebsiteUpdate(w http.ResponseWriter, r *http.Request) {
 }
 
 func validateEnv(){
-	fmt.Println("Loading .env file")
-        err := godotenv.Load("../../.env")
-        if err != nil {
-                fmt.Println("ERROR: could not load .env file")
-        }
 	webSecret = os.Getenv("webhooksecret")
+	updatePath = os.Getenv("updatePath")
 	if webSecret == "" {
 		fmt.Println("ERROR: no webhook secret found in .env")
+	}
+	if updatePath == ""{
+		fmt.Println("ERROR: no getFromGit found in .env")
 	}
 }
 
