@@ -74,5 +74,7 @@
         display: none;
         visibility: hidden;
         width: 0px;
+	background-color: brown;
+
     }
 }
