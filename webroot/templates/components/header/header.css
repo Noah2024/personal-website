@@ -3,6 +3,7 @@
     padding: 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    flex-wrap: wrap;
 }
 
 .navmain img {
@@ -29,7 +30,7 @@
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: clamp(0px, 17px, 25px);
     display: inline-block;
     margin-left: .5em;
     margin-right: .5em;
@@ -65,3 +66,20 @@
     background-color: var(--text-color-primary);
     border-radius: 999px; /* fully rounded ends */
 } 
+
+/* Simply removing the site links when the viewoport is too big */
+/* Later i'll add some kind of conditional burger menu */
+@media (max-width: 768px) {
+    .site-links{
+        display: none;
+        visibility: hidden;
+        width: 0px;
+    }
+    /* .navmain li {
+        display: none;
+    }
+
+    .navmain a {
+        display: block;
+    } */
+}
