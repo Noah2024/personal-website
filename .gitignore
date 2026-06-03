@@ -35,7 +35,7 @@ go.work.sum
 inspiration/*
 
 #generated through populateProjects.sh
-projects/meta/**
+webroot/meta/**
 
 #generated go binary
 indoshon-web-routes

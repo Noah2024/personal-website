@@ -9,6 +9,8 @@ import Footer from "./components/footer/footer.mjs";
 //import pkg3 from './components/footer/footer.mjs';
 //const {footer } = pkg3;
 
+//janky, but allws us to run from sh scrips in other directories we always run from this directory
+process.chdir(`${process.cwd()}/webroot`);
 
 const [cardHtml, expandedCardHtml] = projectGenerator()
 
@@ -95,7 +97,7 @@ const html = `
 </body>
 </html>
 `
-fs.writeFileSync("./webroot/index.html", html);
+fs.writeFileSync("./index.html", html);
 {/* <div class="aboutme-container"> 
             <h1> Welcome! </h2>
             <p> Welcome friends, family, countrymen, (potential employeers...), welcome to indoshon.com. 

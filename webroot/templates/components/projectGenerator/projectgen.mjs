@@ -6,9 +6,9 @@ import {card as projectCardExpanded} from "../projectCardExpanded/card.mjs"
 import fs from 'node:fs';
 import path from 'node:path';
 
-const projectsDir = "./webroot";
-const appDir = "./webroot/apps"
-const metaDir =  "./webroot/meta";
+const projectsDir = "./";
+const appDir = "./apps"
+const metaDir =  "./meta";
 const readmeHTMLName = "README.html"
 const readmeMDName = "README.md"
 const langname = "lang.json"

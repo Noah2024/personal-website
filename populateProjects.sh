@@ -45,8 +45,4 @@ do
 
 done < includedProjects.csv
 
-<<<<<<< Updated upstream
-node.exe templates/build.js
-=======
 node webroot/templates/build.mjs
->>>>>>> Stashed changes
