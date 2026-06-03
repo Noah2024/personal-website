@@ -1,9 +1,6 @@
 /* Most card related styles are inherinted from the other regular projectCard (to avoid unessary code) */
 .card-container.expanded {
     position: fixed;
-    /* top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); */
     visibility: hidden;
     width: 85vw;
     height: 85vh;
