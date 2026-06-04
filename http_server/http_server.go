@@ -55,16 +55,14 @@ func handleWebsiteUpdate(w http.ResponseWriter, r *http.Request) {
 	}
 
 	payloadSignature := parts[1]
-	fmt.Println(payloadSignature)
+	// fmt.Println(payloadSignature)
 	mac := hmac.New(sha256.New, []byte(webSecret))
 	mac.Write(payload)
 	expectedMAC := mac.Sum(nil)
 	expectedSignature := hex.EncodeToString(expectedMAC)
-	fmt.Println(expectedSignature)
+	// fmt.Println(expectedSignature)
 	if hmac.Equal([]byte(payloadSignature), []byte(expectedSignature)) {
 		fmt.Println("Webhook verified! Starting update")
-		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("Webhook processed"))
 		// Executing script to pull newest changed + reload website + api routes
 		go func() {
 			cmd := exec.Command("bash", updatePath)
@@ -73,14 +71,14 @@ func handleWebsiteUpdate(w http.ResponseWriter, r *http.Request) {
 				fmt.Printf("Error updating HTML: %s\n", err)
 			}
 		}()
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("Webhook processed"))
 
 	} else {
 		http.Error(w, "Invalid Signature", http.StatusUnauthorized)
 		fmt.Println("Invalid Signature")
 	}
-	//bodyString := string(bodyBytes)
 	fmt.Println("Finished processing update route")
-	//fmt.Println(bodyString)
 }
 
 func validateEnv() {
