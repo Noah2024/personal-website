@@ -66,11 +66,14 @@ func handleWebsiteUpdate(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("Webhook processed"))
 		// Executing script to pull newest changed + reload website + api routes
-		cmd := exec.Command("bash", updatePath)
-		_, err := cmd.CombinedOutput()
-		if err != nil {
-			fmt.Printf("Error updating HTML: %s\n", err)
-		}
+		go func() {
+			cmd := exec.Command("bash", updatePath)
+			_, err := cmd.CombinedOutput()
+			if err != nil {
+				fmt.Printf("Error updating HTML: %s\n", err)
+			}
+		}()
+
 	} else {
 		http.Error(w, "Invalid Signature", http.StatusUnauthorized)
 		fmt.Println("Invalid Signature")
