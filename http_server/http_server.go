@@ -34,20 +34,20 @@ func handleApiRoot(w http.ResponseWriter, r *http.Request) {
 //Admittidly, some ai was used in the hash checking, I couln't find amazing documentation
 func handleWebsiteUpdate(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "Hello testing the UPDATE url %s\n", r.URL.Path)
-
+	fmt.Println("Testing1")
 	payload, err := io.ReadAll(r.Body)
 	if err != nil {
 		http.Error(w, "Failed to read body of request", http.StatusInternalServerError)
 		return
 	}
 	defer r.Body.Close()
-
+	fmt.Println("Tesgin2")
 	signatureHeader := r.Header.Get("X-Hub-Signature-256")
 	if signatureHeader == ""{
 		http.Error(w, "Missing X-Hub-Signature header", http.StatusUnauthorized)
 		return
 	}
-
+	fmt.Println("Testing3")
 	parts := strings.SplitN(signatureHeader, "=", 2)
 	if len(parts) != 2 || parts[0] != "sha256"{
 		http.Error(w, "Invalid signature format", http.StatusUnauthorized)
@@ -55,12 +55,12 @@ func handleWebsiteUpdate(w http.ResponseWriter, r *http.Request) {
 	}
 
 	payloadSignature := parts[0]
-	
+	fmt.Println("Testing4")
 	mac := hmac.New(sha256.New, []byte(webSecret))
 	mac.Write(payload)
 	expectedMAC := mac.Sum(nil)
 	expectedSignature := hex.EncodeToString(expectedMAC)
-	
+	fmt.Println("Testing5")
 	if hmac.Equal([]byte(payloadSignature), []byte(expectedSignature)){
 		fmt.Println("Webhook verified! Starting update")
 		w.WriteHeader(http.StatusOK)
