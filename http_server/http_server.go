@@ -33,33 +33,39 @@ func handleApiRoot(w http.ResponseWriter, r *http.Request) {
 
 // Admittidly, some ai was used in the hash checking, I couln't find amazing documentation
 func handleWebsiteUpdate(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Processing updateAPI Request")
 	payload, err := io.ReadAll(r.Body)
 	if err != nil {
 		http.Error(w, "Failed to read body of request", http.StatusInternalServerError)
+		fmt.Println("Failed to read body of request")
 		return
 	}
 	defer r.Body.Close()
 	signatureHeader := r.Header.Get("X-Hub-Signature-256")
 	if signatureHeader == "" {
 		http.Error(w, "Missing X-Hub-Signature header", http.StatusUnauthorized)
+		fmt.Println("Missing X-Hub-Signature header")
 		return
 	}
 	parts := strings.SplitN(signatureHeader, "=", 2)
 	if len(parts) != 2 || parts[0] != "sha256" {
 		http.Error(w, "Invalid signature format", http.StatusUnauthorized)
+		fmt.Println("Invalid signature format")
 		return
 	}
 
 	payloadSignature := parts[1]
+	fmt.Println(payloadSignature)
 	mac := hmac.New(sha256.New, []byte(webSecret))
 	mac.Write(payload)
 	expectedMAC := mac.Sum(nil)
 	expectedSignature := hex.EncodeToString(expectedMAC)
+	fmt.Println(expectedSignature)
 	if hmac.Equal([]byte(payloadSignature), []byte(expectedSignature)) {
 		fmt.Println("Webhook verified! Starting update")
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("Webhook processed"))
-		// Executing scripts to reload website && api routes
+		// Executing script to pull newest changed + reload website + api routes
 		cmd := exec.Command("bash", updatePath)
 		_, err := cmd.CombinedOutput()
 		if err != nil {
@@ -67,6 +73,7 @@ func handleWebsiteUpdate(w http.ResponseWriter, r *http.Request) {
 		}
 	} else {
 		http.Error(w, "Invalid Signature", http.StatusUnauthorized)
+		fmt.Println("Invalid Signature")
 	}
 	//bodyString := string(bodyBytes)
 	fmt.Println("Finished processing update route")
