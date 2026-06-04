@@ -9,7 +9,7 @@ This repository contains the source code for my personal website project. It inc
 - `templates/` holds HTML templates used by the site.
 - `static/` includes CSS, fonts, and image assets.
 - `projects/` stores project data as well as interactive demos where possible, generated with populateProjects.sh
-- `scripts/` and `populateProjects.sh` are used to manage or generate website content.
+- `populateProjects.sh` + `getFromGit.sh` + `updateSystemd.sh` are used in an automated CICD pipeline on my homeserver to automatically pull and update changes made to both the website and web routes
 
 
 ## Notes
