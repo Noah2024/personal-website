@@ -1,24 +1,24 @@
 package https_server
 
 import (
-	"os"
 	"fmt"
 	"io"
 	"net/http"
-	"strings"
+	"os"
 	"os/exec"
+	"strings"
 
 	"crypto/hmac"
 	"crypto/sha256"
 	"encoding/hex"
 )
 
-//Web secret initalized at runtime from .env
+// Web secret initalized at runtime from .env
 var webSecret = ""
 var updatePath = ""
 
 func handleApiRoot(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Hello testing the url %s\n", r.URL.Path)
+	fmt.Fprint(w, "Hello testing the UPDATE url %s\n", r.URL.Path)
 	bodyBytes, err := io.ReadAll(r.Body)
 	if err != nil {
 		http.Error(w, "Failed to read body of request", http.StatusInternalServerError)
@@ -31,37 +31,31 @@ func handleApiRoot(w http.ResponseWriter, r *http.Request) {
 	// err := os.WriteFile("tmp.json", []byte(r.Body))
 }
 
-//Admittidly, some ai was used in the hash checking, I couln't find amazing documentation
+// Admittidly, some ai was used in the hash checking, I couln't find amazing documentation
 func handleWebsiteUpdate(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Hello testing the UPDATE url %s\n", r.URL.Path)
-	fmt.Println("Testing1")
 	payload, err := io.ReadAll(r.Body)
 	if err != nil {
 		http.Error(w, "Failed to read body of request", http.StatusInternalServerError)
 		return
 	}
 	defer r.Body.Close()
-	fmt.Println("Tesgin2")
 	signatureHeader := r.Header.Get("X-Hub-Signature-256")
-	if signatureHeader == ""{
+	if signatureHeader == "" {
 		http.Error(w, "Missing X-Hub-Signature header", http.StatusUnauthorized)
 		return
 	}
-	fmt.Println("Testing3")
 	parts := strings.SplitN(signatureHeader, "=", 2)
-	if len(parts) != 2 || parts[0] != "sha256"{
+	if len(parts) != 2 || parts[0] != "sha256" {
 		http.Error(w, "Invalid signature format", http.StatusUnauthorized)
 		return
 	}
 
-	payloadSignature := parts[0]
-	fmt.Println("Testing4")
+	payloadSignature := parts[1]
 	mac := hmac.New(sha256.New, []byte(webSecret))
 	mac.Write(payload)
 	expectedMAC := mac.Sum(nil)
 	expectedSignature := hex.EncodeToString(expectedMAC)
-	fmt.Println("Testing5")
-	if hmac.Equal([]byte(payloadSignature), []byte(expectedSignature)){
+	if hmac.Equal([]byte(payloadSignature), []byte(expectedSignature)) {
 		fmt.Println("Webhook verified! Starting update")
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("Webhook processed"))
@@ -71,7 +65,7 @@ func handleWebsiteUpdate(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			fmt.Printf("Error updating HTML: %s\n", err)
 		}
-	}else{
+	} else {
 		http.Error(w, "Invalid Signature", http.StatusUnauthorized)
 	}
 	//bodyString := string(bodyBytes)
@@ -79,13 +73,13 @@ func handleWebsiteUpdate(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(bodyString)
 }
 
-func validateEnv(){
+func validateEnv() {
 	webSecret = os.Getenv("webhooksecret")
 	updatePath = os.Getenv("updatePath")
 	if webSecret == "" {
 		fmt.Println("ERROR: no webhook secret found in .env")
 	}
-	if updatePath == ""{
+	if updatePath == "" {
 		fmt.Println("ERROR: no getFromGit found in .env")
 	}
 }
@@ -94,7 +88,7 @@ func Start() {
 	//nginx proxy points indoshon.com/api twords the following root
 	//Making all other routes indoshon.com/api/route
 	validateEnv()
-	
+
 	http.HandleFunc("/", handleApiRoot)
 	http.HandleFunc("/update", handleWebsiteUpdate)
 
