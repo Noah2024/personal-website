@@ -1,6 +1,6 @@
 # personal-website
 
-This repository contains the source code for my personal website project. It includes a basic Go HTTP server, frontend templates, static assets, and scripts used to include new projects, the sites index is compiled statically using node. All animations are done nateivly in html css and javascript. 
+This repository contains the source code for my personal website project. It includes a basic Go HTTP server, frontend templates, static assets, and scripts used to include new projects, the sites index is compiled statically using node. All animations are done nateivly in html css and javascript. Github webhook configured to automatically update deployed instance of server at [indoshon.com](https://indoshon.com).
 
 ## Overview
 
