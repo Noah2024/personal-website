@@ -56,11 +56,11 @@ func handleWebsiteUpdate(w http.ResponseWriter, r *http.Request) {
 
 	payloadSignature := parts[1]
 	fmt.Println(payloadSignature)
-	fnt.Println(expectedSignature)
 	mac := hmac.New(sha256.New, []byte(webSecret))
 	mac.Write(payload)
 	expectedMAC := mac.Sum(nil)
 	expectedSignature := hex.EncodeToString(expectedMAC)
+	fmt.Println(expectedSignature)
 	if hmac.Equal([]byte(payloadSignature), []byte(expectedSignature)) {
 		fmt.Println("Webhook verified! Starting update")
 		w.WriteHeader(http.StatusOK)
