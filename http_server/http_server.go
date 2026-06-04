@@ -33,20 +33,24 @@ func handleApiRoot(w http.ResponseWriter, r *http.Request) {
 
 // Admittidly, some ai was used in the hash checking, I couln't find amazing documentation
 func handleWebsiteUpdate(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Processing updateAPI Request")
 	payload, err := io.ReadAll(r.Body)
 	if err != nil {
 		http.Error(w, "Failed to read body of request", http.StatusInternalServerError)
+		fmt.Println("Failed to read body of request")
 		return
 	}
 	defer r.Body.Close()
 	signatureHeader := r.Header.Get("X-Hub-Signature-256")
 	if signatureHeader == "" {
 		http.Error(w, "Missing X-Hub-Signature header", http.StatusUnauthorized)
+		fmt.Println("Missing X-Hub-Signature header")
 		return
 	}
 	parts := strings.SplitN(signatureHeader, "=", 2)
 	if len(parts) != 2 || parts[0] != "sha256" {
 		http.Error(w, "Invalid signature format", http.StatusUnauthorized)
+		fmt.Println("Invalid signature format")
 		return
 	}
 
