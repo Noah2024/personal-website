@@ -13,9 +13,9 @@ export default function Header() {
                 </ul>
 
                 <ul class="outside-links" style="flex-direction: row-reverse ">
-                    <li> <a href="#contact"> <img src="/static/images/topbar/download.svg"> </a> </li>
-                    <li> <a href="https://www.linkedin.com/in/noah-yurasko-a86207336/"> <img src="/static/images/topbar/linkedin.svg"> </a></li>
-                    <li> <a href="https://github.com/Noah2024"> <img src="/static/images/topbar/github.svg"> </a> </li>
+                    <li> <a href="./typst/resume.pdf" target="_blank"> <img src="/static/images/topbar/download.svg", title="Download Resume" > </a> </li>
+                    <li> <a href="https://www.linkedin.com/in/noah-yurasko-a86207336/" target="_blank"> <img src="/static/images/topbar/linkedin.svg" title = "Linkedin"> </a></li>
+                    <li> <a href="https://github.com/Noah2024" target="_blank"> <img src="/static/images/topbar/github.svg" title="Github"> </a> </li>
                 </ul>
             </nav>
         </header>

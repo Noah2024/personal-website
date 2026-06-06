@@ -3,6 +3,11 @@
 #Make sure the CSV file is using LF and not CLRF when running this script
 source ~/.bashrc
 source .env
+
+#New files shoul've been synced with git by now
+#So we can compile the new typst document
+typst c webroot/typst/resume.typ
+
 # pwd
 while IFS=',' read -r col1
 do 
@@ -42,7 +47,6 @@ do
     pandoc webroot/meta/$repoName/README.md -o webroot/meta/$repoName/README.html < /dev/null
 
     
-
 done < includedProjects.csv
 
 node webroot/templates/build.mjs

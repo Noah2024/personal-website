@@ -42,3 +42,6 @@ indoshon-web-routes
 
 #generated static html
 index.html
+
+#PDF generated from typst
+*.pdf
