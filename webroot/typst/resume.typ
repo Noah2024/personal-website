@@ -100,7 +100,7 @@
   title: "Part Time Desk Staff - Climbing Instructor",
   location: "Everett, MA",
   company: "Metro Rock (Boston Vertical LLC)",
-  dates: dates-helper(start-date: "Jun 2022", end-date: "Aug 2022"),
+  dates: dates-helper(start-date: "Jun 2022", end-date: "Aug 2025"),
 )
 - Front end customer service and sales representative. 
 
