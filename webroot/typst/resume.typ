@@ -9,7 +9,9 @@
 #let phone = "+1 (781) 960-7983"
 #let personal-site = "indoshon.com"
 
-#show list: set par(leading: 0.4em, spacing: 0.3em)  
+//Overriding default spacing to fit more stuff in here
+#show list: set par(leading: 0.3em, spacing: 0.2em)  
+// #show list: set head(leading: 0.3em, spacing: 0.1em)
 
 #show: resume.with(
   author: name,
@@ -42,8 +44,8 @@
 * #generic-two-by-two(top-left: "", top-right: "", bottom-left: "", bottom-right: "")
 * #generic-one-by-two(left: "", right: "")
 */
-== Education
 
+== Education
 #edu(
   institution: "Marist University",
   location: "Poughkeepsie, NY",
@@ -57,7 +59,6 @@
 - Relevant Coursework:  Discrete Mathematics, Linear Algebra, Calculus I/II, Physics, Algorithms Analysis & Design, Software Development I/II, Computer Organization and Architecture,  
 
 == Work Experience
-
 #work(
   title: "Lead Developer/Volunteer Server Administrator - Marist Minecraft",
   location: "Poughkeepsie, NY",
@@ -65,20 +66,18 @@
   dates: dates-helper(start-date: "Feb 2026", end-date: "Present"),
 )
 - Implemented custom web app, integrated with SAML2 authentication, in coordination with university Cybersecurity and Networking Teams  
-
 - Developed custom Java application to connect Minecraft proxy server to backend verification database 
-
 - Developed custom automated report generation, integrated with influxdb, and displayed with custom typst pdf template   
-
 - Lead a staff of (5) direct reports  
-
 #work(
   title: "Student Tutor",
   location: "Poughkeepsie, NY",
-  company: "Marist University",
+  company: "Marist University Academic Learning Center",
   dates: dates-helper(start-date: "Feb 2025", end-date: "Present"),
 )
-- One on-one tutoring in computer science and economics studies. 
+- Taught students one-on-one in the university's tutoring program, with a focus on computer science and economics.
+- Computer Science Topics: OOP, DataTypes, Recursion, Basic Algorithms, Computer Science Fundamentals
+- Economics Topics: Supply/Demand, Marginal Analysis, Gains from Trade Price Elastacity, micro and macroeonomics topics as needed.
 
 #work(
   title: "Class President Class of 28",
@@ -86,15 +85,10 @@
   company: "Marist University",
   dates: dates-helper(start-date: "Oct 2024", end-date: "Present"),
 )
-- Sophomore class representative in the (35) member, university student body government.  
-
-- Lead a staff of (3) direct reports with office hours 2x weekly.  
-
-- Present student concerns and proposals on policy to university leadership and staff.  
-
-- Organize and facilitate (4) student led and supported events per semester.  
-
-- Manage digital communications and team coordination via the use of SharePoint/Teams/Word. 
+- Sophomore class representative in the (35) member, University Student Government Body, leading a team  of (3) direct reports with office hours at least 2x weekly.  
+- Presented student concerns and proposals on amending university policy to leadership and staff.  
+- Organized and facilitated (4) student led and supported events per semester under strict budget constraints.  
+- Managed digital communications and team coordination via the use of SharePoint/Teams/Word. 
 
 #work(
   title: "Part Time Desk Staff - Climbing Instructor",
@@ -102,10 +96,8 @@
   company: "Metro Rock (Boston Vertical LLC)",
   dates: dates-helper(start-date: "Jun 2022", end-date: "Aug 2025"),
 )
-- Front end customer service and sales representative. 
-
-- Nationally certified indoor Top Rope and Lead Climbing instructor.  
-
+- Front end customer service and sales representative, responsible for providing excellent customer service and driving sales. 
+- Nationally certified indoor Top Rope and Lead Climbing instructor, frequntly teaching and coaching new climbers in a safe and effective manner. 
 - Re-organized the business’s POS file structure for easier data analysis and queries.  
 
 == Projects
@@ -118,8 +110,8 @@
   // URL is also optional
   url: "indoshon.com/apps/422-tsiraM/demo.html",
 )
-- 8 bit virtual 6502 processor written in typescript
-- Cross compilable into Web Assembly 
+- 8 bit virtual 6502 processor written in typescript w/ virtual CPU, MMU, and Memory along with a custom instruction set
+- Capable of being compiled and run nativly in web browsers using web assemmbley 
 
 #project(
   name: "Kitchen Management Suite",
@@ -129,9 +121,9 @@
   // URL is also optional
   url: "github.com/Kitchen-Management-Suite/kitchen_management_suite",
 )
-- Full stack food & pantry tracking app
-- Backend: Postgres & Flask
-- Frontend Jinja templated html, css & javascript
+- Full stack food & pantry tracking app desinged in small group utalizing agile development principles
+- Dockerized Postgres backend for easy deployment w/ easily extendable webroutes designed in flask 
+- Fontend desinged entielry in native html, css, and javscript with Jinja templating for simplfied dynamic content insertion
 
 #project(
   name: "Personal Website",
@@ -141,10 +133,18 @@
   // URL is also optional
   url: "indoshon.com",
 )
-- Statically generated with node
-- Self hosted and self managed 
-- Fully integrated CICD pipeline keeps live site updated with Git Repo
-
+- Statically generated and self hosted personal website built with native html, css, and javascript and deployed with docker and nginx
+- Both domain and hosting are self managed and maintained, w/ a fully integrated CICD pipeline keeps that the live site updated with changes to the git repo and automatically updates all webroutes
+#project(
+  name: "3D Chess CLI ",
+  // Role is optional
+  // role: "Developer",
+  // Dates is optional
+  // URL is also optional
+  url: "github.com/Noah2024/3D-Chess-CLI",
+)
+- 3D a Command-Line-Interface built built in golang to make, change, and validate 3 Dimensions of play for a game of chess.
+-  Complete with a contribution guide and full test suite for further development of new features (such as eventual full UI)
 == Extracurricular Activities
 Climbing Club (Co Founder), Computer Society, Intramural Volleyball
 // #extracurriculars(
@@ -167,5 +167,5 @@ Climbing Club (Co Founder), Computer Society, Intramural Volleyball
 // )
 
 == Skills
-- *Programming Languages*: JavaScript, Python, HTML/CSS, Java, Bash, Golang
-- *Technologies*: Git, UNIX, Docker, NGINX, Postgres, InfluxDb, Grafana
+- *Programming Languages*: JavaScript/Typescript, Python, HTML/CSS, Java, Bash, Golang
+- *Technologies*: Git, UNIX, Linux, Docker, NGINX, Postgres, InfluxDb, Grafana, Windows, Cloudflare, SAML2, SSH, Typst
