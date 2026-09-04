@@ -56,7 +56,7 @@
   consistent: true
 )
 - Cumulative GPA: 3.67\/4.0 |  Honors Program, Presidential Scholarship, Deans Circle, Dean's List.
-- Relevant Coursework:  Discrete Mathematics, Linear Algebra, Calculus I/II, Physics, Algorithms Analysis & Design, Software Development I/II, Computer Organization and Architecture,  
+- Relevant Coursework:  Discrete Mathematics, Linear Algebra, Calculus I/II, Physics, Algorithms Analysis & Design, Software Development I/II, Computer Organization and Architecture, Data Communications
 
 == Work Experience
 #work(
@@ -77,7 +77,7 @@
 )
 - Taught students one-on-one in the university's tutoring program, with a focus on computer science and economics.
 - Computer Science Topics: OOP, DataTypes, Recursion, Basic Algorithms, Computer Science Fundamentals
-- Economics Topics: Supply/Demand, Marginal Analysis, Gains from Trade Price Elastacity, micro and macroeonomics topics as needed.
+- Economics Topics: Supply/Demand, Marginal Analysis, Gains from Trade Price Elastacity, micro and macroeonomics as needed.
 
 #work(
   title: "Class President Class of 28",
@@ -97,7 +97,7 @@
   dates: dates-helper(start-date: "Jun 2022", end-date: "Aug 2025"),
 )
 - Front end customer service and sales representative, responsible for providing excellent customer service and driving sales. 
-- Nationally certified indoor Top Rope and Lead Climbing instructor, frequntly teaching and coaching new climbers in a safe and effective manner. 
+- Nationally certified indoor Lead Climbing instructor, frequntly teaching new climbers in a safe and effective manner. 
 - Re-organized the business’s POS file structure for easier data analysis and queries.  
 
 == Projects
@@ -133,7 +133,7 @@
   // URL is also optional
   url: "indoshon.com",
 )
-- Statically generated and self hosted personal website built with native html, css, and javascript and deployed with docker and nginx
+- Statically generated and self hosted personal website built with html, css, and javascript and deployed with docker and nginx
 - Both domain and hosting are self managed and maintained, w/ a fully integrated CICD pipeline keeps that the live site updated with changes to the git repo and automatically updates all webroutes
 #project(
   name: "3D Chess CLI ",
@@ -143,7 +143,7 @@
   // URL is also optional
   url: "github.com/Noah2024/3D-Chess-CLI",
 )
-- 3D a Command-Line-Interface built built in golang to make, change, and validate 3 Dimensions of play for a game of chess.
+- 3D a Command-Line-Interface built in golang to make, change, and validate 3 Dimensions of play for a game of chess.
 -  Complete with a contribution guide and full test suite for further development of new features (such as eventual full UI)
 == Extracurricular Activities
 Climbing Club (Co Founder), Computer Society, Intramural Volleyball
