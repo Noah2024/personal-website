@@ -85,7 +85,7 @@
   company: "Marist University",
   dates: dates-helper(start-date: "Oct 2024", end-date: "Present"),
 )
-- Sophomore class representative in the (35) member, University Student Government Body, leading a team  of (3) direct reports with office hours at least 2x weekly.  
+- Sophomore class representative in the (35) member, University Student Government Body, leading a team  of (3) direct reports with office hours at least 2x weekly in addition to requisite meetings 
 - Presented student concerns and proposals on amending university policy to leadership and staff.  
 - Organized and facilitated (4) student led and supported events per semester under strict budget constraints.  
 - Managed digital communications and team coordination via the use of SharePoint/Teams/Word. 
